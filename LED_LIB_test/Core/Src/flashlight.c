@@ -5,18 +5,26 @@
  *      Author: llelie
  */
 
-#include "flashlight.h"
+
 #include <stdbool.h>
-#include "stdint.h"
-#include "main.h"
+#include <stdint.h>
+#include <main.h>
+#include "flashlight.h"
+
 
 
 //global variables
-extern volatile uint16_t Period;
-extern volatile uint8_t repetitionCounter;
-extern volatile uint8_t activeState;
-extern volatile uint8_t state;
+volatile uint16_t Period;
+volatile uint8_t repetitionCounter;
+volatile uint8_t activeState;
+volatile uint8_t state;
 bool flashlight;
+
+static flash_pattern_t flashPattern[] = {
+		{20000-1, ON},
+		{40000-1, ON},
+		{60000-1, OFF},
+};
 
 
 
@@ -29,13 +37,14 @@ void turn (bool output){
 			}
 
 void load_flash_pattern(uint8_t state){
-				Period = flashPattern[state]->flashDuration;
-				flashlight = flashPattern[state]->output;
+				Period = flashPattern[state].flashDuration;
+				flashlight = flashPattern[state].output;
 				return;
 			}  //Fehlermeldung: undefined reference to 'Period'
 
 
 void init_flashlight(void){
+
 
 				  repetitionCounter = 0;
 				  //flashlight = OFF;

@@ -9,7 +9,7 @@
 #define SRC_FLASHLIGHT_H_
 
 #include <stdbool.h>
-#include "stdint.h"
+#include <stdint.h>
 
 
 #define NUMBER_OF_REPETITIONS 3
@@ -32,11 +32,12 @@ typedef struct{
 }flash_pattern_t;
 
 
+/*
 flash_pattern_t a = {20000-1, ON};
 flash_pattern_t b = {40000-1, OFF};
 flash_pattern_t c = {60000-1, OFF};
-
-flash_pattern_t* flashPattern[5] = {&a, &b, &c};
+*/
+//flash_pattern_t* flashPattern[5] = {&a, &b, &c};
 
 //public functions
 void init_flashlight(void);
